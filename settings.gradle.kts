@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "My Application"
-include(":app")
+//rootProject.name = "My Application"
+//include(":app")
 include(":intTextField")
