@@ -1,8 +1,12 @@
+import com.android.ide.common.gradle.RELEASE
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("maven-publish")
 }
+
+group = "com.google.Rikuto13ten"
 
 android {
     namespace = "com.example.inttextfield"
@@ -62,6 +66,12 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.Rikuto13ten"
+                artifactId = "IntTextField"
+                version = "1.0.0"
+            }
         }
     }
 }
