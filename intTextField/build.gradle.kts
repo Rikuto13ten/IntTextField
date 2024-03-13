@@ -6,7 +6,7 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.google.Rikuto13ten"
+group = "com.github.Rikuto13ten"
 
 android {
     namespace = "com.example.inttextfield"
