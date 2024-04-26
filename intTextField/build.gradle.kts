@@ -5,6 +5,7 @@ plugins {
 }
 
 group = "com.github.Rikuto13ten"
+version = "1.0.0"
 
 android {
     namespace = "com.example.inttextfield"
@@ -38,12 +39,6 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
-    }
-
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-        }
     }
 }
 
