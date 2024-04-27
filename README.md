@@ -9,6 +9,7 @@ IntTextField is a custom Compose library designed to handle integer input effici
 This library simplifies the process of taking integer input by ensuring that only numeric values are accepted and handled in the text field.
 
 ## Usage
+This compose inherits from TextField, so you can use its options as is.
 ```kotlin
 var num by remember { mutableIntStateOf(0) }
 
