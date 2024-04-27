@@ -1,4 +1,7 @@
-<img src="https://img.shields.io/badge/-Kotlin-ffffff.svg?logo=kotlin&style=flat"> <img src="https://img.shields.io/badge/-Android-ffffff.svg?logo=android&style=flat"> <img src="https://img.shields.io/badge/-Compose-ffffff.svg?logo=jetpackcompose&style=flat">
+![Kotlin Badge](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=fff&style=flat)
+![Android Badge](https://img.shields.io/badge/Android-34A853?logo=android&logoColor=fff&style=flat)
+![Jetpack Compose Badge](https://img.shields.io/badge/Jetpack%20Compose-4285F4?logo=jetpackcompose&logoColor=fff&style=flat)
+![JitPack Badge](https://img.shields.io/badge/JitPack-000?logo=jitpack&logoColor=fff&style=flat)
 
 # IntTextField
 
