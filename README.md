@@ -41,5 +41,5 @@ dependencies {
 }
 ```
 
-## License
+## LICENSE
 MIT
