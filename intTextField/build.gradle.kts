@@ -63,14 +63,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("release") {
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.Rikuto13ten"
+            artifactId = "IntTextField"
+            version = "1.0.0"
+
+            afterEvaluate {
                 from(components["release"])
-                groupId = "com.github.Rikuto13ten"
-                artifactId = "IntTextField"
-                version = "1.0.0"
             }
         }
     }
