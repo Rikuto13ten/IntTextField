@@ -65,7 +65,7 @@ dependencies {
 
 publishing {
     publications {
-        register<MavenPublication>("release") {
+        create<MavenPublication>("release") {
             groupId = "com.github.Rikuto13ten"
             artifactId = "IntTextField"
             version = "1.0.0"
