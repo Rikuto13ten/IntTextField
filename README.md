@@ -12,7 +12,16 @@ This library simplifies the process of taking integer input by ensuring that onl
 ```kotlin
 var num by remember { mutableIntStateOf(0) }
 
+// IntTextField
 IntTextField(
+  value = num,
+  onValueChange = {
+    num = it
+  }
+)
+
+// BasicIntTextField
+BasicIntTextField(
   value = num,
   onValueChange = {
     num = it
