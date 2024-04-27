@@ -8,6 +8,22 @@
 IntTextField is a custom Compose library designed to handle integer input efficiently within Jetpack Compose UIs. 
 This library simplifies the process of taking integer input by ensuring that only numeric values are accepted and handled in the text field.
 
+## Usage
+```kotlin
+var num by remember { mutableIntStateOf(0) }
+
+IntTextField(
+  value = num,
+  onValueChange = {
+    num = it
+  }
+)
+```
+|Example|
+|---|
+|<video src="https://github.com/Rikuto13ten/IntTextField/assets/69412443/4227b4b1-0341-4fb4-9785-32a780142c50">|
+
+
 ## Get Started
 `setting.gradle`
 ```gradle
