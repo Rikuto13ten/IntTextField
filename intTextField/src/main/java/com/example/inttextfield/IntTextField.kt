@@ -4,7 +4,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
@@ -22,6 +21,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 @Composable
 fun IntTextField(
     value: Int,
+    maxValue: Int? = null,
     onValueChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -51,27 +51,12 @@ fun IntTextField(
         mutableStateOf(value.toString())
     }
 
-    val convertTextToIntField: (String) -> IntTextFieldValue = { newText ->
-        if (newText.isEmpty()) {
-            IntTextFieldValue(
-                displayText = "",
-                valueIntText = 0
-            )
-        } else {
-            val newTextToInt = newText.filter { it.isDigit() }
-            IntTextFieldValue(
-                displayText = newTextToInt,
-                valueIntText = newTextToInt.toIntOrNull() ?: 0
-            )
-        }
-    }
-
     TextField(
         value = text,
         onValueChange = { newText ->
-            convertTextToIntField(newText).also {
-                text = it.displayText
-                onValueChange(it.valueIntText)
+            convertTextToIntFieldValue(newText, maxValue).also {
+                text = it.first
+                onValueChange(it.second)
             }
         },
         modifier = modifier,
@@ -96,4 +81,36 @@ fun IntTextField(
         shape = shape,
         colors = colors
     )
+}
+
+private fun convertTextToIntFieldValue(
+    newText: String,
+    maxValue: Int?
+): Pair<String, Int> {
+    if (newText.isEmpty()) {
+        return Pair("", 0)
+    }
+    val filteredDigits = newText.filter { it.isDigit() }
+    val validatedInt = parseBoundedIntFromString(filteredDigits)
+    val checkInt = checkIntRange(validatedInt, maxValue)
+    return Pair(checkInt.toString(), checkInt)
+}
+
+private fun parseBoundedIntFromString(value: String): Int {
+    val longValue = value.toLong()
+    return when {
+        longValue > Int.MAX_VALUE -> Int.MAX_VALUE
+        longValue < Int.MIN_VALUE -> Int.MIN_VALUE
+        else -> longValue.toInt()
+    }
+}
+
+private fun checkIntRange(
+    value: Int,
+    maxValue: Int?
+): Int {
+    return when {
+        maxValue != null && value > maxValue -> maxValue
+        else -> value
+    }
 }
