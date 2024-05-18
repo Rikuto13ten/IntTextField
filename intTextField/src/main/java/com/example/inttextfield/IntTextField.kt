@@ -87,17 +87,17 @@ private fun convertTextToIntFieldValue(
     newText: String,
     maxValue: Int?
 ): Pair<String, Int> {
-    if (newText.isEmpty()) {
-        return Pair("", 0)
-    }
-    val filteredDigits = newText.filter { it.isDigit() }
-    val validatedInt = parseBoundedIntFromString(filteredDigits)
-    val checkInt = checkIntRange(validatedInt, maxValue)
+    if (newText.isEmpty()) return Pair("", 0)
+    val filteredDigitsString = newText.filter { it.isDigit() }
+    val validatedInt = parseBoundedIntFromString(filteredDigitsString)
+    val checkInt = validatedInt coerceToMax maxValue
     return Pair(checkInt.toString(), checkInt)
 }
 
-private fun parseBoundedIntFromString(value: String): Int {
-    val longValue = value.toLong()
+private fun parseBoundedIntFromString(
+    filteredDigitsString: String
+): Int {
+    val longValue = filteredDigitsString.toLong()
     return when {
         longValue > Int.MAX_VALUE -> Int.MAX_VALUE
         longValue < Int.MIN_VALUE -> Int.MIN_VALUE
@@ -105,12 +105,6 @@ private fun parseBoundedIntFromString(value: String): Int {
     }
 }
 
-private fun checkIntRange(
-    value: Int,
-    maxValue: Int?
-): Int {
-    return when {
-        maxValue != null && value > maxValue -> maxValue
-        else -> value
-    }
+infix fun Int.coerceToMax(maxValue: Int?): Int {
+    return this.coerceAtMost(maxValue ?: this)
 }
